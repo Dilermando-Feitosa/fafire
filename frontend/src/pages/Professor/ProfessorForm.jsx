@@ -55,7 +55,7 @@ const ProfessorForm = () => {
             navigate("/professor");
         } catch (error) {
             console.error(error)
-            toast.error("Professor Saved")
+            toast.error("Error to Save Professor")
         }
     }
 

@@ -12,7 +12,7 @@ function Courses() {
   const actions = [
     {
       label: "Edit",
-      onClick: (courses) => navigate(`/courses/${courses.id}`),
+      onClick: (courses) => navigate(`/course/${courses.id}`),
     },
     {
       label: "Remove",
@@ -33,7 +33,7 @@ function Courses() {
     <Container title="Courses">
       <ListView
         addButton={
-          <Link className="btn btn-primary float-right" to="/courses/new">
+          <Link className="btn btn-primary float-right" to="/course/new">
             Add Courses
           </Link>
         }

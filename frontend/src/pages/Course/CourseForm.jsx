@@ -7,7 +7,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
 const CourseForm = () => {
-    const [courses, setCourse] = useState({
+    const [courses, setCourses] = useState({
         name: ''
     });
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ const CourseForm = () => {
             }
 
             toast.success("Course Saved")
-            navigate("/courses");
+            navigate("/course");
         } catch (error) {
             console.error(error)
             toast.error("Error to Save Course")
@@ -65,7 +65,7 @@ const CourseForm = () => {
           <div className="w-100">
             <Button 
                 variant="secondary" 
-                onClick={() => navigate("/courses")}>Cancel
+                onClick={() => navigate("/course")}>Cancel
             </Button>
             <Button className="mx-2" onClick={onSave}>Save Course</Button>
           </div>
