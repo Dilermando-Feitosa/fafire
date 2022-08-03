@@ -15,7 +15,8 @@ import Professor from './pages/Professor'
 import Department from './pages/Department'
 import DepartmentForm from './pages/Department/DepartmentForm'
 import ProfessorForm from './pages/Professor/ProfessorForm'
-import CourseForm from './pages/Course/CourseForm';
+import CourseForm from './pages/Course/CourseForm'
+import AllocationForm from './pages/Allocation/AllocationForm';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -28,7 +29,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Outlet />
           </>
         }>
-          <Route path='/allocation' element={ <Allocation />} />
+          <Route path='/allocation' element={ <Outlet />}>
+            <Route element={<Allocation />} index />
+            <Route path=':id' element={ <AllocationForm />} />
+          </Route>
           <Route path='/professor' element={ <Outlet />}>
             <Route element={<Professor />} index />
             <Route path=':id' element={ <ProfessorForm />} />

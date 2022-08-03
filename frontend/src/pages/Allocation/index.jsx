@@ -44,9 +44,9 @@ const Allocation = () => {
             label: "ID",
           },
           {
-            key: "day",
-            render: (day) => {
-              return <span style={{ color: "red" }}>{day.toUpperCase()}</span>;
+            key: "dayOfWeek",
+            render: (dayOfWeek) => {
+              return <span style={{ color: "blue" }}>{dayOfWeek}</span>;
             },
             label: "Day Of Week",
           },

@@ -7,14 +7,14 @@ import { useParams, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
 const AllocationForm = () => {
-    const [allocations, setAllocations] = useState([]);
-    const [departments, setDepartments] = useState([]);
-    const [professor, setProfessor] = useState({
+    const [professor, setProfessor] = useState([]);
+    const [course, setCourse] = useState([]);
+    const [allocation, setAllocation] = useState({
         dayOfWeek: '',
         startHour: '',
         endHour: '',
-        courseId: '',
-        professorId: ''
+        professorId: '',
+        courseId: ''
     });
     const navigate = useNavigate();
     const {id} = useParams()
@@ -22,13 +22,13 @@ const AllocationForm = () => {
     const isNew = id === "new";
 
     useEffect(() => {
-        axios.get("/allocations").then((response) => setAllocations(response.data))
+        axios.get("/allocations").then((response) => setAllocation(response.data))
     }, [])
 
     useEffect(() => {
         if (!isNew) {
             axios.get(`/allocations/${id}`)
-            .then((response) => setAllocations(response.data))
+            .then((response) => setAllocation(response.data))
             .catch(console.error)
         }
     }, [])
@@ -45,9 +45,9 @@ const AllocationForm = () => {
             courseId: course.id,
             professorId: professor.id,
             departmentId: professor.departmentId,
-            day: allocations.day,
-            startHour: allocations.startHour,
-            endHour: allocations.endHour
+            dayOfWeek: allocation.dayOfWeek,
+            startHour: allocation.startHour,
+            endHour: allocation.endHour
         }
 
         try {
@@ -73,7 +73,7 @@ const AllocationForm = () => {
                 <Form.Control 
                     name="allocation" 
                     onChange={onChange} 
-                    value={allocations.day} 
+                    value={allocations.dayOfWeek} 
                     placeholder="Day of Week" />
             </Form.Group>
 
