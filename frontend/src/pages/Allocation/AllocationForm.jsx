@@ -7,8 +7,10 @@ import { useParams, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
 const AllocationForm = () => {
-    const [professor, setProfessor] = useState([]);
-    const [course, setCourse] = useState([]);
+ //   const [professor, setProfessor] = useState([]);
+ //   const [course, setCourse] = useState([]);
+    const [professor] = useState([]);
+    const [course] = useState([]);
     const [allocation, setAllocation] = useState({
         dayOfWeek: '',
         startHour: '',
@@ -42,9 +44,11 @@ const AllocationForm = () => {
 
     const onSave = async () => {
         const form = {
-            courseId: course.id,
-            professorId: professor.id,
-            departmentId: professor.departmentId,
+          //  courseId: course.id,
+            courseId: allocation.courseId,
+          //  professorId: professor.id,
+            professorId: allocation.professorId,
+          //  departmentId: professor.departmentId,
             dayOfWeek: allocation.dayOfWeek,
             startHour: allocation.startHour,
             endHour: allocation.endHour
@@ -73,7 +77,7 @@ const AllocationForm = () => {
                 <Form.Control 
                     name="allocation" 
                     onChange={onChange} 
-                    value={allocations.dayOfWeek} 
+                    value={allocation.dayOfWeek} 
                     placeholder="Day of Week" />
             </Form.Group>
 
@@ -82,7 +86,7 @@ const AllocationForm = () => {
                 <Form.Control 
                     name="allocation" 
                     onChange={onChange} 
-                    value={allocations.startHour} 
+                    value={allocation.startHour} 
                     placeholder="Start Hour" />
             </Form.Group>
 
@@ -91,7 +95,7 @@ const AllocationForm = () => {
                 <Form.Control 
                     name="allocation" 
                     onChange={onChange} 
-                    value={allocations.endHour} 
+                    value={allocation.endHour} 
                     placeholder="End Hour" />
             </Form.Group>
 
@@ -100,8 +104,8 @@ const AllocationForm = () => {
                 <Form.Select
                     name="professorId" 
                     onChange={onChange} 
-                    value={allocations.professorId}>
-                        <option value="">Select Allocation</option>
+                    value={allocation.professorId}>
+                        <option value="">Select Professor</option>
                         {professor.map((professor, index) => (
                             <option key={index} value={professor.id}>{professor.name}</option>
                         ))}
@@ -113,8 +117,8 @@ const AllocationForm = () => {
                 <Form.Select
                     name="courseId" 
                     onChange={onChange} 
-                    value={allocations.courseId}>
-                        <option value="">Select Allocation</option>
+                    value={allocation.courseId}>
+                        <option value="">Select Course</option>
                         {course.map((course, index) => (
                             <option key={index} value={course.id}>{course.name}</option>
                         ))}
