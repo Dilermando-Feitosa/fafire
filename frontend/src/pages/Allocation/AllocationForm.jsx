@@ -7,10 +7,10 @@ import { useParams, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
 const AllocationForm = () => {
- //   const [professor, setProfessor] = useState([]);
- //   const [course, setCourse] = useState([]);
-    const [professor] = useState([]);
-    const [course] = useState([]);
+    const [professor, setProfessor] = useState([]);
+    const [course, setCourse] = useState([]);
+ //   const [professor] = useState([]);
+ //   const [course] = useState([]);
     const [allocation, setAllocation] = useState({
         dayOfWeek: '',
         startHour: '',
@@ -23,8 +23,16 @@ const AllocationForm = () => {
 
     const isNew = id === "new";
 
+  //  useEffect(() => {
+  //      axios.get("/allocations").then((response) => setAllocation(response.data))
+  //  }, [])
+
     useEffect(() => {
-        axios.get("/allocations").then((response) => setAllocation(response.data))
+        axios.get("/professor").then((response) => setProfessor(response.data))
+    }, [])
+
+    useEffect(() => {
+        axios.get("/course").then((response) => setCourse(response.data))
     }, [])
 
     useEffect(() => {
@@ -35,7 +43,7 @@ const AllocationForm = () => {
         }
     }, [])
 
-    const onChange = ({target:{name, value}}) => {
+    const onChange = ({target:{id, value}}) => {
         setAllocation({
             ...allocation,
             [id]: value
@@ -44,11 +52,8 @@ const AllocationForm = () => {
 
     const onSave = async () => {
         const form = {
-          //  courseId: course.id,
             courseId: allocation.courseId,
-          //  professorId: professor.id,
             professorId: allocation.professorId,
-          //  departmentId: professor.departmentId,
             dayOfWeek: allocation.dayOfWeek,
             startHour: allocation.startHour,
             endHour: allocation.endHour
